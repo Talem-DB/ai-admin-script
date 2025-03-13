@@ -5,6 +5,10 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from dotenv import load_dotenv
 from pdf_manager import save_online_pdf
 import os
+import tracemalloc
+import asyncio
+
+tracemalloc.start()
 
 # Load environment variables
 load_dotenv()
@@ -24,11 +28,11 @@ async def store_vectors():
         file_name = input("Name of the file: ")
 
         # Ensure the PDF file exists
-        pdf_path = f"./helper/sources/{file_name}.pdf"
+        pdf_path = f"./sources/{file_name}.pdf"
 
     elif (is_local == "N"):
         pdf_url = input("Enter pdf url:")
-        pdf_path = save_online_pdf("URL of the file: ")
+        pdf_path = save_online_pdf(pdf_url)
 
     else:
         return "Invalid input"
@@ -61,4 +65,5 @@ async def store_vectors():
 
     return "Vectors stored successfully."
 
-print(store_vectors())
+if __name__ == "__main__":
+    asyncio.run(store_vectors())
