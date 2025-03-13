@@ -13,16 +13,15 @@ tracemalloc.start()
 # Load environment variables
 load_dotenv()
 
-ASTRA_DB_API_ENDPOINT = os.getenv("ASTRA_DB_API_ENDPOINT")
-ASTRA_DB_APPLICATION_TOKEN = os.getenv("ASTRA_DB_APPLICATION_TOKEN")
-ASTRA_DB_NAMESPACE = os.getenv("ASTRA_DB_NAMESPACE")
-HUGGINGFACEHUB_API_TOKEN = os.getenv("HUGGINGFACEHUB_API_TOKEN")
+ASTRA_DB_API_ENDPOINT = input("AstraDB API Endpoint: ")
+ASTRA_DB_APPLICATION_TOKEN = input("AstraDB Application Token: ")
+ASTRA_DB_NAMESPACE = input("AstraDB Namespace: ")
 
 
 # Store Embeddings in AstraDB Vector Store (Fresh Data)
 async def store_vectors():
     pdf_path = None
-    is_local = input("Is the file local? Y/N").upper()
+    is_local = input("Is the file local? Y/N: ").upper()
     
     if (is_local == "Y"):
         file_name = input("Name of the file: ")
@@ -36,8 +35,6 @@ async def store_vectors():
 
     else:
         return "Invalid input"
-
-    absolute_path = os.path.abspath(pdf_path)
 
     # Error handling if file is not found
     if not os.path.exists(pdf_path):
