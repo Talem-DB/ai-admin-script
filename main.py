@@ -9,8 +9,6 @@ import asyncio
 
 tracemalloc.start()
 
-
-
 # Store Embeddings in AstraDB Vector Store (Fresh Data)
 async def store_vectors():
 
