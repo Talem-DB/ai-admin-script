@@ -18,7 +18,7 @@ def save_online_pdf(pdf_url):
             with open(file_name, "wb") as pdf_file:
                 for chunk in response.iter_content(1024):
                     pdf_file.write(chunk)
-            return f"./{file_name}"
+            return f"../source/{file_name}"
         else:
             return "Failed to download PDF"
     except requests.exceptions.RequestException as e:

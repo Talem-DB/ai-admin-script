@@ -3,7 +3,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
 from dotenv import load_dotenv
-from pdf_manager import save_online_pdf
+from helper.pdf import save_online_pdf
 import os
 import tracemalloc
 import asyncio
