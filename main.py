@@ -2,7 +2,6 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
-from dotenv import load_dotenv
 from helper.pdf import save_online_pdf
 import os
 import tracemalloc
@@ -10,16 +9,16 @@ import asyncio
 
 tracemalloc.start()
 
-# Load environment variables
-load_dotenv()
-
-ASTRA_DB_API_ENDPOINT = input("AstraDB API Endpoint: ")
-ASTRA_DB_APPLICATION_TOKEN = input("AstraDB Application Token: ")
-ASTRA_DB_NAMESPACE = input("AstraDB Namespace: ")
 
 
 # Store Embeddings in AstraDB Vector Store (Fresh Data)
 async def store_vectors():
+
+    ASTRA_DB_API_ENDPOINT = input("AstraDB API Endpoint: ")
+    ASTRA_DB_APPLICATION_TOKEN = input("AstraDB Application Token: ")
+    ASTRA_DB_NAMESPACE = input("AstraDB Namespace: ")
+
+
     pdf_path = None
     is_local = input("Is the file local? Y/N: ").upper()
     
