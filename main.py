@@ -61,3 +61,4 @@ async def store_vectors():
 
 if __name__ == "__main__":
     asyncio.run(store_vectors())
+    
