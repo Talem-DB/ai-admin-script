@@ -47,14 +47,13 @@ async def store_vectors():
     embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
 
     vectorstore = AstraDBVectorStore(
-        collection_name="main",
+        collection_name="main_v2",
         embedding=embeddings,
         api_endpoint=ASTRA_DB_API_ENDPOINT,
         token=ASTRA_DB_APPLICATION_TOKEN,
         namespace=ASTRA_DB_NAMESPACE,
     )    
 
-    await vectorstore.adelete()
     vectorstore.add_documents(documents=docs)
 
     return "Vectors stored successfully."
